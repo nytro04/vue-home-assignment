@@ -2,7 +2,7 @@
   <div class="container">
     <div class="m-4 text-right">
       <router-link to="/add-survey" class="btn btn-info"
-        >Add New Survey <i class="fas fa-plus"></i
+        >Add New Survey <i class="fas fa-plus ml-2"></i
       ></router-link>
     </div>
 
