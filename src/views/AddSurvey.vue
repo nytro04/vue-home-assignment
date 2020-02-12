@@ -27,11 +27,12 @@
     </div>
 
     <div class="py-5">
-      <ol>
+      <ul>
         <li v-for="(question, index) in questions" :key="index">
-          {{ question }}
+          <p class="question__light">{{ index + 1 }} → {{ question.type }}</p>
+          <p class="question__normal">{{ question.name }} ?</p>
         </li>
-      </ol>
+      </ul>
     </div>
   </div>
 </template>
@@ -58,4 +59,20 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+li {
+  list-style: none;
+}
+
+.question {
+  &__light {
+    font-weight: 300;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+
+  &__normal {
+  }
+}
+</style>

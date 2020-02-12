@@ -13,7 +13,7 @@
     <b-modal id="single-choice-survey" ref="single-choice" title="Single Choice" @show="resetModal" @hidden="resetModal" @ok="handleOk">
       <form ref="form" @submit.stop.prevent="handleSubmit">
         <b-form-group :state="singleState" label="Please enter your single choice survey question" label-for="single-choice" invalid-feedback="input is required">
-          <b-form-input id="single-choice" v-model="single" :state="nameState" required></b-form-input>
+          <b-form-input id="single-choice" v-model="single" :state="singleState" required></b-form-input>
           <!-- <b-form-radio-group
             id="single-choice"
             v-model="selected"
@@ -80,9 +80,16 @@ export default {
 
       console.log(this.single);
 
+      const singleSurvey = {
+        type: "SINGLE CHOICE",
+        name: this.single
+      };
+
+      console.log(singleSurvey);
+
       localStorage.setItem(
         "survey",
-        JSON.stringify([...surveyDB, this.single])
+        JSON.stringify([...surveyDB, singleSurvey])
       );
 
       console.log(JSON.parse(localStorage.getItem("survey")));

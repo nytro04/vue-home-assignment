@@ -66,7 +66,17 @@ export default {
 
       console.log(this.short);
 
-      localStorage.setItem("survey", JSON.stringify([...surveyDB, this.short]));
+      const shortSurvey = {
+        type: "SHORT TEXT",
+        name: this.short
+      };
+
+      console.log(shortSurvey);
+
+      localStorage.setItem(
+        "survey",
+        JSON.stringify([...surveyDB, shortSurvey])
+      );
 
       console.log(JSON.parse(localStorage.getItem("survey")));
 

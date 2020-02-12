@@ -64,7 +64,14 @@ export default {
 
       console.log(this.long);
 
-      localStorage.setItem("survey", JSON.stringify([...surveyDB, this.long]));
+      const longSurvey = {
+        type: "LONG TEXT",
+        name: this.long
+      };
+
+      console.log(longSurvey);
+
+      localStorage.setItem("survey", JSON.stringify([...surveyDB, longSurvey]));
 
       console.log(JSON.parse(localStorage.getItem("survey")));
 
