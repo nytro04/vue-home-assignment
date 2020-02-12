@@ -10,27 +10,10 @@
       </ul>
     </div> -->
 
-    <b-modal
-      id="single-choice-survey"
-      ref="single-choice"
-      title="Single Choice"
-      @show="resetModal"
-      @hidden="resetModal"
-      @ok="handleOk"
-    >
+    <b-modal id="single-choice-survey" ref="single-choice" title="Single Choice" @show="resetModal" @hidden="resetModal" @ok="handleOk">
       <form ref="form" @submit.stop.prevent="handleSubmit">
-        <b-form-group
-          :state="nameState"
-          label="Please enter your single choice survey question"
-          label-for="single-choice"
-          invalid-feedback="input is required"
-        >
-          <b-form-input
-            id="single-choice"
-            v-model="single"
-            :state="nameState"
-            required
-          ></b-form-input>
+        <b-form-group :state="singleState" label="Please enter your single choice survey question" label-for="single-choice" invalid-feedback="input is required">
+          <b-form-input id="single-choice" v-model="single" :state="nameState" required></b-form-input>
           <!-- <b-form-radio-group
             id="single-choice"
             v-model="selected"
@@ -60,7 +43,8 @@
 export default {
   data() {
     return {
-      single: ""
+      single: "",
+      singleState: null
       //   selected: "",
       //   options: [
       //     { text: "Yes", value: "Yes" },
@@ -71,12 +55,12 @@ export default {
   methods: {
     checkFormValidity() {
       const valid = this.$refs.form.checkValidity();
-      this.nameState = valid;
+      this.singleState = valid;
       return valid;
     },
     resetModal() {
-      this.long = "";
-      this.longState = null;
+      this.single = "";
+      this.singleState = null;
     },
     handleOk(bvModalEvt) {
       // Prevent modal from closing
@@ -90,7 +74,19 @@ export default {
         return;
       }
       // Push the name to submitted names
-      this.submittedNames.push(this.long);
+
+      let surveyDB = JSON.parse(localStorage.getItem("survey"));
+      surveyDB = surveyDB ? surveyDB : [];
+
+      console.log(this.single);
+
+      localStorage.setItem(
+        "survey",
+        JSON.stringify([...surveyDB, this.single])
+      );
+
+      console.log(JSON.parse(localStorage.getItem("survey")));
+
       // Hide the modal manually
       this.$nextTick(() => {
         this.$bvModal.hide("single-choice-survey");

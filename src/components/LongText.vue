@@ -10,30 +10,10 @@
       </ul>
     </div> -->
 
-    <b-modal
-      id="long-survey-text"
-      ref="long-modal"
-      title="Long Text"
-      @show="resetModal"
-      @hidden="resetModal"
-      @ok="handleOk"
-    >
+    <b-modal id="long-survey-text" ref="long-modal" title="Long Text" @show="resetModal" @hidden="resetModal" @ok="handleOk">
       <form ref="form" @submit.stop.prevent="handleSubmit">
-        <b-form-group
-          :state="nameState"
-          label="Please enter your long survey question"
-          label-for="long-input"
-          invalid-feedback="Long input is required"
-        >
-          <b-form-textarea
-            id="long-input"
-            v-model="long"
-            placeholder="Enter your long question..."
-            rows="3"
-            max-rows="6"
-            :state="longState"
-            required
-          ></b-form-textarea>
+        <b-form-group :state="longState" label="Please enter your long survey question" label-for="long-input" invalid-feedback="Long input is required">
+          <b-form-textarea id="long-input" v-model="long" placeholder="Enter your long question..." rows="3" max-rows="6" :state="longState" required></b-form-textarea>
         </b-form-group>
       </form>
       <template v-slot:modal-footer="{ ok, cancel }">
@@ -53,14 +33,13 @@ export default {
   data() {
     return {
       long: "",
-      longState: null,
-      submittedNames: []
+      longState: null
     };
   },
   methods: {
     checkFormValidity() {
       const valid = this.$refs.form.checkValidity();
-      this.nameState = valid;
+      this.longState = valid;
       return valid;
     },
     resetModal() {
@@ -79,7 +58,16 @@ export default {
         return;
       }
       // Push the name to submitted names
-      this.submittedNames.push(this.long);
+
+      let surveyDB = JSON.parse(localStorage.getItem("survey"));
+      surveyDB = surveyDB ? surveyDB : [];
+
+      console.log(this.long);
+
+      localStorage.setItem("survey", JSON.stringify([...surveyDB, this.long]));
+
+      console.log(JSON.parse(localStorage.getItem("survey")));
+
       // Hide the modal manually
       this.$nextTick(() => {
         this.$bvModal.hide("long-survey-text");

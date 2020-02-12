@@ -6,15 +6,7 @@
     <!-- <modal name="short-modal" /> -->
     <!-- <modal ref="short-modal"></modal> -->
     <div class="dropdown text-right">
-      <a
-        class="btn btn-info dropdown-toggle"
-        href="#"
-        role="button"
-        id="dropdownMenuLink"
-        data-toggle="dropdown"
-        aria-haspopup="true"
-        aria-expanded="false"
-      >
+      <a class="btn btn-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Add a question
       </a>
 
@@ -33,6 +25,14 @@
         </button>
       </div>
     </div>
+
+    <div class="py-5">
+      <ol>
+        <li v-for="(question, index) in questions" :key="index">
+          {{ question }}
+        </li>
+      </ol>
+    </div>
   </div>
 </template>
 
@@ -49,17 +49,12 @@ export default {
     SingleChoice
   },
   data() {
-    return {};
+    return {
+      questions: JSON.parse(localStorage.getItem("survey"))
+    };
   },
 
-  methods: {
-    // showModal() {
-    //   this.$refs["short-modal"].show();
-    // }
-    // show() {
-    //   this.$modal.show("hello-world");
-    // }
-  }
+  methods: {}
 };
 </script>
 
