@@ -1,25 +1,14 @@
 <template>
-  <div class="container">
-    <div class="m-4 text-right">
-      <router-link to="/add-survey" class="btn btn-info"
-        >Add New Survey <i class="fas fa-plus ml-2"></i
-      ></router-link>
+  <!-- <div class="container"> -->
+  <div class="row">
+    <div class="col-md-6">
+      <!-- <div class="container"> -->
+      <AddSurvey />
+      <!-- </div> -->
     </div>
-
-    <div class="card card-body mb-3">
-      <ul class="list-group">
-        <li class="list-group-item text-center">Kofi Mole</li>
-      </ul>
-    </div>
-    <div class="card card-body mb-3">
-      <ul class="list-group">
-        <li class="list-group-item text-center">Kofi Mole</li>
-      </ul>
-    </div>
-    <div class="card card-body mb-3">
-      <ul class="list-group">
-        <li class="list-group-item text-center">Kofi Mole</li>
-      </ul>
+    <div class="col-md-6">
+      <Preview />
+      <!-- </div> -->
     </div>
   </div>
 </template>
@@ -27,11 +16,24 @@
 <script>
 // @ is an alias to /src
 // import HelloWorld from "@/components/HelloWorld.vue";
+import AddSurvey from "../views/AddSurvey";
+import Preview from "../views/Preview";
 
 export default {
   name: "Home",
+  components: {
+    AddSurvey,
+    Preview
+  },
   data() {
     return {};
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.col-md-6:first-child {
+  min-height: 100vh;
+  background-color: #f7f7f7;
+}
+</style>

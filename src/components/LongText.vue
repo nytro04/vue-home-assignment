@@ -65,8 +65,8 @@ export default {
       console.log(this.long);
 
       const longSurvey = {
-        type: "LONG TEXT",
-        name: this.long
+        name: "LONG TEXT",
+        label: this.long
       };
 
       console.log(longSurvey);

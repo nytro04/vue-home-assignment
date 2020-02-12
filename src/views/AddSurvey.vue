@@ -6,7 +6,7 @@
     <!-- <modal name="short-modal" /> -->
     <!-- <modal ref="short-modal"></modal> -->
     <div class="dropdown text-right">
-      <a class="btn btn-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <a class="btn btn-dark dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Add a question
       </a>
 
@@ -29,8 +29,8 @@
     <div class="py-5">
       <ul>
         <li v-for="(question, index) in questions" :key="index">
-          <p class="question__light">{{ index + 1 }} → {{ question.type }}</p>
-          <p class="question__normal">{{ question.name }} ?</p>
+          <p class="question__light">{{ index + 1 }} → {{ question.name }}</p>
+          <p class="question__normal">{{ question.label }} ?</p>
         </li>
       </ul>
     </div>

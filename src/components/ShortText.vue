@@ -67,8 +67,8 @@ export default {
       console.log(this.short);
 
       const shortSurvey = {
-        type: "SHORT TEXT",
-        name: this.short
+        name: "SHORT TEXT",
+        label: this.short
       };
 
       console.log(shortSurvey);

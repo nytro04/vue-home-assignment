@@ -81,8 +81,8 @@ export default {
       console.log(this.single);
 
       const singleSurvey = {
-        type: "SINGLE CHOICE",
-        name: this.single
+        name: "SINGLE CHOICE",
+        label: this.single
       };
 
       console.log(singleSurvey);
