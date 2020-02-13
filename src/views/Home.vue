@@ -1,14 +1,10 @@
 <template>
-  <!-- <div class="container"> -->
   <div class="row">
     <div class="col-md-6">
-      <!-- <div class="container"> -->
-      <AddSurvey />
-      <!-- </div> -->
+      <AddSurvey :questions="surveyList" @updateLS="preview" />
     </div>
     <div class="col-md-6">
-      <Preview />
-      <!-- </div> -->
+      <Preview :questions="surveyList" @updateLS="preview" />
     </div>
   </div>
 </template>
@@ -26,7 +22,15 @@ export default {
     Preview
   },
   data() {
-    return {};
+    return {
+      surveyList: JSON.parse(localStorage.getItem("survey"))
+    };
+  },
+  methods: {
+    preview() {
+      console.log("preview");
+      return (this.surveyList = JSON.parse(localStorage.getItem("survey")));
+    }
   }
 };
 </script>

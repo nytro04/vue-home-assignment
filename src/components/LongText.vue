@@ -1,15 +1,5 @@
 <template>
   <div>
-    <!-- <b-button v-b-modal.modal-prevent-closing>Open Modal</b-button> -->
-
-    <!-- <div class="mt-3">
-      Submitted Names:
-      <div v-if="submittedNames.length === 0">--</div>
-      <ul v-else class="mb-0 pl-3">
-        <li v-for="name in submittedNames" :key="name">{{ name }}</li>
-      </ul>
-    </div> -->
-
     <b-modal id="long-survey-text" ref="long-modal" title="Long Text" @show="resetModal" @hidden="resetModal" @ok="handleOk">
       <form ref="form" @submit.stop.prevent="handleSubmit">
         <b-form-group :state="longState" label="Please enter your long survey question" label-for="long-input" invalid-feedback="Long input is required">
@@ -57,23 +47,18 @@ export default {
       if (!this.checkFormValidity()) {
         return;
       }
-      // Push the name to submitted names
 
       let surveyDB = JSON.parse(localStorage.getItem("survey"));
       surveyDB = surveyDB ? surveyDB : [];
-
-      console.log(this.long);
 
       const longSurvey = {
         name: "LONG TEXT",
         label: this.long
       };
 
-      console.log(longSurvey);
-
       localStorage.setItem("survey", JSON.stringify([...surveyDB, longSurvey]));
 
-      console.log(JSON.parse(localStorage.getItem("survey")));
+      this.$emit("reload");
 
       // Hide the modal manually
       this.$nextTick(() => {

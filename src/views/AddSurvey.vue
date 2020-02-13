@@ -1,19 +1,14 @@
 <template>
   <div class="container py-5">
-    <ShortText ref="short-modal" />
-    <LongText ref="long-modal" />
-    <SingleChoice ref="single-choice" />
-    <!-- <modal name="short-modal" /> -->
-    <!-- <modal ref="short-modal"></modal> -->
+    <ShortText ref="short-modal" @reload="reload" />
+    <LongText ref="long-modal" @reload="reload" />
+    <SingleChoice ref="single-choice" @reload="reload" />
     <div class="dropdown text-right">
-      <a class="btn btn-dark dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <a class="btn btn-outline-dark dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Add a question
       </a>
 
       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <!--
-        <router-link class="dropdown-item" :to="{ name: 'ShortText' }"
-          >Short Text</router-link> -->
         <button class="dropdown-item" v-b-modal.modal-prevent-closing>
           Short Text
         </button>
@@ -43,6 +38,7 @@ import LongText from "../components/LongText";
 import SingleChoice from "../components/SingleChoice";
 
 export default {
+  props: ["questions"],
   name: "AddSurvey",
   components: {
     ShortText,
@@ -50,12 +46,14 @@ export default {
     SingleChoice
   },
   data() {
-    return {
-      questions: JSON.parse(localStorage.getItem("survey"))
-    };
+    return {};
   },
 
-  methods: {}
+  methods: {
+    reload() {
+      this.$emit("updateLS");
+    }
+  }
 };
 </script>
 
