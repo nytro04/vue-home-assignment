@@ -9,13 +9,9 @@
           <input v-if="question.name === 'SHORT TEXT'" type="text" placeholder="Type your answer here..." />
           <textarea v-if="question.name === 'LONG TEXT'" name="long-text" id="long-text" cols="50" rows="3" placeholder="Type your answer here..."></textarea>
           <template v-if="question.name === 'SINGLE CHOICE'">
-            <div class="radiobtn">
+            <div v-for="(option, index) in question.options" :key="index" class="radiobtn">
               <input type="radio" id="yes" value="Yes" v-model="picked">
-              <label for="yes">Yes</label>
-            </div>
-            <div class="radiobtn">
-              <input type="radio" id="no" value="No" v-model="picked">
-              <label for="no">No</label>
+              <label for="yes">{{option}}</label>
             </div>
           </template>
         </li>

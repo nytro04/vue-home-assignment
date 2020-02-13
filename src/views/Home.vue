@@ -28,7 +28,6 @@ export default {
   },
   methods: {
     preview() {
-      console.log("preview");
       return (this.surveyList = JSON.parse(localStorage.getItem("survey")));
     }
   }
