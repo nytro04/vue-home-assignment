@@ -10,7 +10,7 @@
           <textarea v-if="question.name === 'LONG TEXT'" name="long-text" id="long-text" cols="50" rows="3" placeholder="Type your answer here..."></textarea>
           <template v-if="question.name === 'SINGLE CHOICE'">
             <div v-for="(option, index) in question.options" :key="index" class="radiobtn">
-              <input type="radio" id="yes" value="Yes" v-model="picked">
+              <input type="radio" id="yes" value="Yes" v-model="picked" />
               <label for="yes">{{option}}</label>
             </div>
           </template>
